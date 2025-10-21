@@ -24,7 +24,7 @@
       font = { name = "JetBrainsMono Nerd Font"; size = 12; };
 
       # Point ReGreet at the bundled icon theme (set to the exact installed name)
-      iconTheme.name = "Tokyonight";  # e.g., Tokyonight / Tokyonight-Dark — verify below
+      iconTheme.name = "Tokyonight-Moon";  # e.g., Tokyonight / Tokyonight-Dark — verify below
 
       # Wallpaper path ReGreet reads
       background = {
