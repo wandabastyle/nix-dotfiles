@@ -3,15 +3,8 @@
 let
 	dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
 	create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-	configs = {
-		dunst = "dunst";
-		hyprlock = "hyprlock";
-		niri = "niri";
-		nvim = "nvim";
-		nwg-bar = "nwg-bar";
-		waybar = "waybar";
-		wpaperd = "wpaperd";
-	};
+	entries = builtins.readDir dotfiles;
+	dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
 in 
 {
 	home.username = "kanashi";
@@ -19,10 +12,13 @@ in
 	programs.git.enable = true;
 	home.stateVersion = "25.05";
 
-	xdg.configFile = builtins.mapAttrs (name: subpath: {
-		source = create_symlink "${dotfiles}/${subpath}";
-		recursive = true;
-	}) configs;
+	xdg.configFile = builtins.listToAttrs (map (name: {
+		name = name;
+		value = {
+			source = create_symlink "${dotfiles}/${name}";
+			# recursive = false; # single directory symlink
+		};
+		}) dirNames);
 
 	home.packages = with pkgs; [
 		neovim
