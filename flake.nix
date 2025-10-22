@@ -31,8 +31,8 @@
 							home-manager = {
 								useGlobalPkgs = true;
 								useUserPackages = true;
-								backupFileExtensio = "backup";
-								user.kanashi = import ./home.nix;
+								backupFileExtension = "backup";
+								users.kanashi = import ./home.nix;
 							};
 
 							users.users.kanashi = lib.mkDefault {
@@ -65,4 +65,5 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
