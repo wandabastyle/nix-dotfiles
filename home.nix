@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-	dotfiles = "${config.home.homeDirectory}/nixos-dotfiles/config";
+	dotfiles = "${config.home.homeDirectory}/nix-dotfiles/config";
 	create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 	entries = builtins.readDir dotfiles;
 	dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
@@ -28,3 +28,4 @@ in
 		ghostty
 	];
 }
+
