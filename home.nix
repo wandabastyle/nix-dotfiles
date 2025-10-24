@@ -7,6 +7,10 @@ let
 	dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
 in 
 {
+	imports = [
+		./modules/neovim.nix
+	];
+
 	home.username = "kanashi";
 	home.homeDirectory = "/home/kanashi";
 	programs.git.enable = true;
@@ -30,6 +34,7 @@ in
 		ghostty
 	];
 }
+
 
 
 
