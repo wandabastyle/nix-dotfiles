@@ -38,6 +38,7 @@
 							users.users.kanashi = lib.mkDefault {
 								isNormalUser = true;
 								extraGroups = [ "wheel" ];
+								shell = pkgs.fish;
 							};
 						})
 					] ++ modules # Host-specific extras
@@ -65,5 +66,6 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
