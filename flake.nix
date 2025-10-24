@@ -55,7 +55,17 @@
 						nixos-hardware.nixosModules.common-pc-ssd
 
 						# the generated hardware config for this machine
-						./hardware-configuration-tcm93.nix
+						./machines/tcm93.nix
+					];
+				};
+				t460s = {
+					system = "x86_64-linux";
+					modules = [
+						# Hardware quirks/profile for this exact model:
+						nixos-hardware.nixosModules.levovo-thinkpad-460s
+
+						# The the generated hardware config for this machine
+						./machines/t460s.nix
 					];
 				};
 
@@ -66,6 +76,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
