@@ -22,9 +22,8 @@
 						./configuration.nix
 						home-manager.nixosModules.home-manager
 
-						# Defaults: hostname + timezone + HM user
-						({ lib, ... }: {
-							time.timeZone = lib.mkDefault "Europe/Berlin";
+						# Defaults: hostname + HM user
+						({ lib, pkgs, ... }: {
 							networking.hostName = name;
 							networking.networkmanager.enable = lib.mkDefault true;
 
@@ -76,6 +75,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
