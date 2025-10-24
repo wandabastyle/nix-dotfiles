@@ -3,6 +3,7 @@
 
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+		disko.url = "github:nix-community/disko";
 		home-manager = {
 			url = "github:nix-community/home-manager/release-25.05";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -10,7 +11,7 @@
 		nixos-hardware.url = "github:NixOS/nixos-hardware";
 	};
 
-	outputs = { self, nixpkgs, home-manager, nixos-hardware, ... }:
+	outputs = { self, nixpkgs, disko, home-manager, nixos-hardware, ... }:
 		let
 			lib = nixpkgs.lib;
 		
@@ -20,6 +21,7 @@
 					modules = [
 						# Shared config applied to every host
 						./configuration.nix
+						disko.nixosModules.disko
 						home-manager.nixosModules.home-manager
 
 						# Defaults: hostname + HM user
@@ -75,6 +77,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
