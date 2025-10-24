@@ -9,7 +9,7 @@
 	# Timezone & Locale
 	time.timeZone = "Europe/Berlin";
 	i18n.defaultLocale = "de_DE.UTF-8";
-	i18n.supportLocales = " [
+	i18n.supportedLocales = " [
 		"de_DE.UTF-8/UTF-8"
 		"en_US.UTF-8/UTF-8"
 	];
@@ -18,11 +18,13 @@
   boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 
-	# zRAM
+	# zRAM (compressed swap in RAM)
 	zramSwap {
 		enable = true;
 		memoryPercent = 50;
 	};
+
+	services.openssh.enable = true;
 
 	environment.systemPackages = with pkgs; [
 		vim
@@ -39,5 +41,6 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes"];
 	system.stateVersion = "25.05";
 }
+
 
 
