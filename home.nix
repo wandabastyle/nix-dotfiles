@@ -22,12 +22,14 @@ in
 		}) dirNames);
 
 	home.packages = with pkgs; [
-		neovim
-		nil
-		nixpkgs-fmt
-		gcc
+		bat
+		dunst
+		ghostty
+		mpv
+		nwg-bar
 		ghostty
 	];
 }
+
 
 
