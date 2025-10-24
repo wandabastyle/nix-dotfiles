@@ -10,6 +10,7 @@ in
 	home.username = "kanashi";
 	home.homeDirectory = "/home/kanashi";
 	programs.git.enable = true;
+	programs.fish.enable = true;
 	home.stateVersion = "25.05";
 
 	xdg.configFile = builtins.listToAttrs (map (name: {
@@ -28,4 +29,5 @@ in
 		ghostty
 	];
 }
+
 
