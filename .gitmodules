@@ -19,3 +19,4 @@
 [submodule "config/waybar"]
 	path = config/waybar
 	url = git@github.com:wandabastyle/waybar.git
+	branch = niri
