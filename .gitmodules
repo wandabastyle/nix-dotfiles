@@ -16,3 +16,6 @@
 [submodule "config/nwg-bar"]
 	path = config/nwg-bar
 	url = git@github.com:wandabastyle/nwg-bar.git
+[submodule "config/waybar"]
+	path = config/waybar
+	url = git@github.com:wandabastyle/waybar.git
