@@ -31,7 +31,7 @@ in
 		ghostty
 		mpv
 		nwg-bar
-		ghostty
+		starship
 	];
 }
 
