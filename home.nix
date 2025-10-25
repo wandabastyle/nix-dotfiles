@@ -32,6 +32,7 @@ in
 		mpv
 		nwg-bar
 		starship
+		zoxide
 	];
 }
 
