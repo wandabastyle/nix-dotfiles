@@ -12,6 +12,11 @@
     pkgs.rocmPackages.clr.icd
   ];
 
-  # (Optional tools)
-  # environment.systemPackages = with pkgs; [ rocm-smi vulkan-tools glxinfo ];
+  # Optional tools
+  environment.systemPackages = with pkgs; [ 
+    rocm-smi 
+    vulkan-tools 
+    glxinfo 
+    rog-control-center
+  ];
 }
