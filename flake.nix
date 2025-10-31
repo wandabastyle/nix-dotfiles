@@ -69,7 +69,21 @@
 						./machines/t460s.nix
 					];
 				};
+				fa617nsr = {
+					system = "x86_64-linux";
+					modules = [
+						# host-specific nixos-hardware-modules first...
+						nixos-hardware.nixosModules.common-cpu-amd-pstate
+						nixos-hardware.nixosModules.common-gpu-amd
+						nixos-hardware.nixosModules.common-pc-ssd
+						nixos-hardware.nixosModules.common-pc-laptop
 
+						# the generated hardware config for this machine
+						./machines/fa617nsr.nix
+
+						# host-specific software modules
+						./modules/asus-amd.nix
+				
 				# Add more hosts later, each with its own system + hardware file
 				# foo = { system = "aarch64-linux"; modules = [ ./hardware-configuration-foo.nix ]; };
 			};
@@ -77,6 +91,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
