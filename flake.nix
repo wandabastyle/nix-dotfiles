@@ -83,7 +83,8 @@
 
 						# host-specific software modules
 						./modules/asus-amd.nix
-				
+					];
+				};
 				# Add more hosts later, each with its own system + hardware file
 				# foo = { system = "aarch64-linux"; modules = [ ./hardware-configuration-foo.nix ]; };
 			};
@@ -91,6 +92,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
