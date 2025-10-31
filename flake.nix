@@ -20,7 +20,7 @@
 					inherit system;
 					modules = [
 						# Shared config applied to every host
-						./configuration.nix
+						./modules/common.nix
 						disko.nixosModules.disko
 						home-manager.nixosModules.home-manager
 
@@ -77,6 +77,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
