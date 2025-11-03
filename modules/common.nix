@@ -15,7 +15,7 @@
 	];
 
 	# Bootloader (EFI)
-  boot.loader.systemd-boot.enable = true;
+	boot.loader.systemd-boot.enable = true;
 	boot.loader.efi.canTouchEfiVariables = true;
 
 	# zRAM (compressed swap in RAM)
@@ -41,6 +41,7 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes"];
 	system.stateVersion = "25.05";
 }
+
 
 
 
