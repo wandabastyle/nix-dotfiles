@@ -3,13 +3,13 @@
 {
 
 	imports = [
-		./modules/regreet.nix
+		./regreet.nix
 	];
 
 	# Timezone & Locale
 	time.timeZone = "Europe/Berlin";
 	i18n.defaultLocale = "de_DE.UTF-8";
-	i18n.supportedLocales = " [
+	i18n.supportedLocales = [
 		"de_DE.UTF-8/UTF-8"
 		"en_US.UTF-8/UTF-8"
 	];
@@ -19,7 +19,7 @@
 	boot.loader.efi.canTouchEfiVariables = true;
 
 	# zRAM (compressed swap in RAM)
-	zramSwap {
+	zramSwap = {
 		enable = true;
 		memoryPercent = 50;
 	};
@@ -41,6 +41,7 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes"];
 	system.stateVersion = "25.05";
 }
+
 
 
 
