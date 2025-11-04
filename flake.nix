@@ -69,7 +69,7 @@
 						./machines/t460s.nix
 					];
 				};
-				fa617nsr = {
+				loq15arp9 = {
 					system = "x86_64-linux";
 					modules = [
 						# host-specific nixos-hardware-modules first...
@@ -79,10 +79,10 @@
 						nixos-hardware.nixosModules.common-pc-laptop
 
 						# the generated hardware config for this machine
-						./machines/fa617nsr.nix
+						./machines/loq15arp9.nix
 
 						# host-specific software modules
-						./modules/asus-amd.nix
+						./modules/lenovo-loq-amd-nvidia.nix
 					];
 				};
 				# Add more hosts later, each with its own system + hardware file
@@ -92,6 +92,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
