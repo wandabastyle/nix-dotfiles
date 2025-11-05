@@ -30,7 +30,7 @@
 		vim
 		wget
 		git
-		hyprpaper
+		wpaperd
 		hyprlock
 		hypridle
 		rofi
@@ -47,6 +47,7 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes"];
 	system.stateVersion = "25.05";
 }
+
 
 
 
