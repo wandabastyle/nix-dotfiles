@@ -33,8 +33,11 @@ in
 		nwg-bar
 		starship
 		zoxide
+		obsidian
+		pass
 	];
 }
+
 
 
 
