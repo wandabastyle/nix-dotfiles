@@ -30,6 +30,12 @@
 		vim
 		wget
 		git
+		hyprpaper
+		hyprlock
+		hypridle
+		rofi
+		waybar
+		brightnessctl
 	];
 
 	fonts.packages = with pkgs; [
@@ -41,6 +47,7 @@
 	nix.settings.experimental-features = [ "nix-command" "flakes"];
 	system.stateVersion = "25.05";
 }
+
 
 
 
