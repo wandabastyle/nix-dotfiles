@@ -27,7 +27,6 @@ in
 
 	home.packages = with pkgs; [
 		bat
-		dunst
 		ghostty
 		mpv
 		nwg-bar
@@ -37,6 +36,7 @@ in
 		pass
 	];
 }
+
 
 
 
