@@ -9,10 +9,9 @@
   };
 
   hardware.nvidia = {
-    modesetting.enable = true;
-    nvidiaSettings = true;    # nvidia-settings UI
-    open = false;             # proprietary driver for 40-series
-    powerManagement.enable = true;  # runtime PM
+  nvidiaSettings = true;        # keep if you want the GUI tool
+  powerManagement.enable = true;  # optional: add if you want NVIDIA PM hooks
+  # open = lib.mkForce false;       # optional: force proprietary kernel module
   };
 
   # Simple, conflict-free laptop power control
