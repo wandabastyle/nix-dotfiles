@@ -1,47 +1,29 @@
 { config, lib, pkgs, ... }: {
-  #### Lenovo LOQ (AMD iGPU + NVIDIA dGPU) ####
-
-  # Kernel: stay current; helps with newer LOQ/RTX 40xx quirks
+  # Newer kernel tends to work best on LOQ/RTX 40-series
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Graphics: keep generic flags; PRIME offload for NVIDIA
+  # Mesa + 32-bit userspace (for Steam/Proton etc.)
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    # Add AMD OpenCL (ICD) so apps can use the iGPU for CL workloads too.
-    extraPackages = lib.mkAfter [ pkgs.rocmPackages.clr.icd ];
   };
-  # Back-compat toggles (harmless on 25.05+)
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-
-  # X/Wayland video drivers (amdgpu gets pulled automatically; list nvidia explicitly)
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true;
-    nvidiaSettings = true;
-    open = false;                     # proprietary driver recommended for RTX 4060
-    powerManagement.enable = true;
-
-    # PRIME offload (muxless hybrid); set your real PCI bus IDs from `lspci`.
-    prime = {
-      offload.enable = true;
-      amdgpuBusId = "PCI:6:0:0";      # <-- replace with your iGPU bus ID
-      nvidiaBusId = "PCI:1:0:0";      # <-- replace with your dGPU bus ID
-    };
+    nvidiaSettings = true;    # nvidia-settings UI
+    open = false;             # proprietary driver for 40-series
+    powerManagement.enable = true;  # runtime PM
   };
 
-  # Helpful service for hybrid laptops (device runtime switching hints)
-  services.switcherooControl.enable = true;
+  # Simple, conflict-free laptop power control
+  services.power-profiles-daemon.enable = true;
+  services.tlp.enable = false;
 
-  # Laptop power & firmware
-  services.power-profiles-daemon.enable = true;   # good default with GNOME/Wayland
-  services.tlp.enable = lib.mkDefault false;      # avoid conflicts w/ power-profiles-daemon
+  # Firmware + updates
   hardware.enableRedistributableFirmware = true;
   services.fwupd.enable = true;
 
-  # Bluetooth / Audio (typical laptop stack)
+  # Bluetooth / Audio stack
   hardware.bluetooth.enable = true;
   services.pipewire = {
     enable = true;
@@ -50,16 +32,30 @@
     jack.enable = false;
   };
 
-  # Optional: tools for diagnostics & GPU checks
+  # Handy tools (+ powerprofilesctl CLI)
   environment.systemPackages = with pkgs; [
     vulkan-tools
     glxinfo
-    rocm-smi         # may be limited on iGPU, but still handy
     nvtopPackages.full
+    power-profiles-daemon   # provides `powerprofilesctl`
   ];
 
-  # Optional (uncomment if you hit backlight/suspend quirks):
-  # boot.kernelParams = [ "amdgpu.backlight=1" ];
-  # services.logind.lidSwitchExternalPower = "suspend-then-hibernate";
-  # services.logind.lidSwitch = "suspend";
+  # GameMode: toggles power profile + niri refresh rate on game start/stop.
+  # In Steam per-game: set Launch Options to `gamemoderun %command%`.
+  programs.gamemode = {
+    enable = true;
+    settings = {
+      custom = {
+        # Adjust output name and mode strings to match `niri msg outputs`
+        start = ''
+          powerprofilesctl set performance
+          niri msg output eDP-1 mode "1920x1080@144.000"
+        '';
+        end = ''
+          niri msg output eDP-1 mode "1920x1080@60.000"
+          powerprofilesctl set balanced
+        '';
+      };
+    };
+  };
 }
