@@ -9,6 +9,7 @@ in
 {
 	imports = [
 		./modules/neovim.nix
+		./modules/brave-webapps.nix
 	];
 
 	home.username = "kanashi";
@@ -39,37 +40,8 @@ in
 		brave
 		qutebrowser
 	];
-
-	xdg.desktopEntries."twitch-webapp" = {
-    	name = "Twitch";
-    	genericName = "Twitch Web App";
-    	comment = "Open Twitch in a standalone Brave window";
-    	exec = "${pkgs.brave}/bin/brave --new-window --app=https://www.twitch.tv \
-      		--user-data-dir=%h/.local/share/brave-webapps/twitch \
-      		--class=TwitchWebApp --name=TwitchWebApp \
-      		--enable-features=UseOzonePlatform --ozone-platform-hint=auto";
-    	terminal = false;
-    	categories = [ "Network" "AudioVideo" ];
-    	# optional icon path (put your svg/png there, or remove this line)
-    	# icon = "${config.home.homeDirectory}/.local/share/icons/twitch.png";
-    	startupWMClass = "TwitchWebApp";
-	};
-
-	# YouTube web app
-  	xdg.desktopEntries."youtube-webapp" = {
-    	name = "YouTube";
-    	genericName = "YouTube Web App";
-    	comment = "Open YouTube in a standalone Brave window";
-    	exec = "${pkgs.brave}/bin/brave --new-window --app=https://www.youtube.com \
-      		--user-data-dir=%h/.local/share/brave-webapps/youtube \
-      		--class=YouTubeWebApp --name=YouTubeWebApp \
-      		--enable-features=UseOzonePlatform --ozone-platform-hint=auto";
-    	terminal = false;
-    	categories = [ "Network" "AudioVideo" ];
-    	# icon = "${config.home.homeDirectory}/.local/share/icons/youtube.png";
-    	startupWMClass = "YouTubeWebApp";
-	};
 }
+
 
 
 
