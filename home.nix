@@ -34,8 +34,10 @@ in
 		zoxide
 		obsidian
 		pass
+		ftb-app
 	];
 }
+
 
 
 
