@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
 	dotfiles = "${config.home.homeDirectory}/nix-dotfiles/config";
@@ -40,12 +40,15 @@ in
 		brave
 		qutebrowser
 	];
+
+	# Ensure dotfiles ownership at activation time (Home Manager style)
+	home.activation.dotfiles-ownership = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
+	'';
 }
 
-# Ensure dotfiles ownership at activation time (Home Manager style)
-home.activation.dotfiles-ownership = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-  chown -R kanashi:users /home/kanashi/nix-dotfiles || true
-'';
+
+
 
 
 
