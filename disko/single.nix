@@ -32,6 +32,7 @@
                 # Optional to keep snapshots lean:
                 "@var".mountpoint  = "/var";
                 "@tmp".mountpoint  = "/var/tmp";
+                "@games".mountpoint     = "/games";
               };
               # Common FS mount options applied to all subvols:
               mountOptions = [ "compress=zstd" "noatime" "ssd" "space_cache=v2" ];
