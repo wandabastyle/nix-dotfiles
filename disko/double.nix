@@ -1,10 +1,13 @@
 # ### How to use it
 #
 # * Reinstall only disk 1 (leave disk 2 alone): 
-# sudo nix run github:nix-community/disko -- --mode destroy,format,mount ./disko.nix --arg includeDataDisk false
+# nix run github:nix-community/disko -- --mode disko ./disko.nix --arg includeDataDisk false
 #
 # * After install, mount disk 2 without formatting: 
-# sudo nix run github:nix-community/disko -- --mode mount ./disko.nix --arg includeDataDisk true
+# nix run github:nix-community/disko -- --mode mount ./disko.nix --arg includeDataDisk true
+#
+# * Dry run / verify (no changes; recommended before destructive runs):
+# nix run github:nix-community/disko -- --mode verify ./disko.nix --arg includeDataDisk false
 
 { lib, includeDataDisk ? true, ... }:
 
