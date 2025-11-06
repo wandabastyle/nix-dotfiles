@@ -26,6 +26,8 @@
 
 						# Defaults: hostname + HM user
 						({ lib, pkgs, ... }: {
+							nixpkgs.config.allowUnfree = true;
+
 							networking.hostName = name;
 							networking.networkmanager.enable = lib.mkDefault true;
 
@@ -92,6 +94,7 @@
 			nixosConfigurations = lib.mapAttrs (name: cfg: mkHost name cfg) hosts;
 		};
 }
+
 
 
 
