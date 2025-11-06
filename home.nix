@@ -15,7 +15,14 @@ in
 	home.username = "kanashi";
 	home.homeDirectory = "/home/kanashi";
 	programs.git.enable = true;
-	programs.fish.enable = true;
+
+	programs.fish = {
+  		enable = true;
+  		functions.nrs = ''
+    		sudo nixos-rebuild switch --flake ~/nixos-dotfiles#(hostname -s)
+  		'';
+	};
+
 	home.stateVersion = "25.05";
 
 	xdg.configFile = builtins.listToAttrs (map (name: {
@@ -46,6 +53,7 @@ in
   	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
 	'';
 }
+
 
 
 
