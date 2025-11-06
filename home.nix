@@ -35,8 +35,12 @@ in
 		obsidian
 		pass
 		ftb-app
+		freetube
+		brave
+		qutebrowser
 	];
 }
+
 
 
 
