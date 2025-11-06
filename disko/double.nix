@@ -62,10 +62,10 @@
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-L" "data" ];
+                extraArgs = [ "-L" "games" ];
                 mountOptions = [ "compress=zstd" "noatime" "ssd" "space_cache=v2" ];
                 subvolumes = {
-                  "@data".mountpoint = "/mnt/data";
+                  "@data".mountpoint = "/games";
                 };
               };
             };
