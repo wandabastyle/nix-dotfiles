@@ -2,7 +2,7 @@
 
 let
 	dotfiles = "${config.home.homeDirectory}/nix-dotfiles/config";
-        create_symlink = path: lib.file.mkOutOfStoreSymlink path;
+    create_symlink = path: lib.file.mkOutOfStoreSymlink path;
 	entries = builtins.readDir dotfiles;
 	dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
 in 
@@ -46,6 +46,7 @@ in
   	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
 	'';
 }
+
 
 
 
