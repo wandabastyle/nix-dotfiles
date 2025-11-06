@@ -49,10 +49,20 @@
 	system.stateVersion = "25.05";
 
 	system.activationScripts.games-ownership = ''
-    	chown kanashi:users /games || true
-		chattr +C /games || true
-  	'';
+  		# ensure exists (harmless if already mounted & present)
+ 		mkdir -p /games
+
+ 		# ownership & perms (setgid so group 'users' sticks)
+  		chown kanashi:users /games || true
+  		chmod 2775 /games || true
+
+  		# set NOCOW only on btrfs
+  		if [ "$(stat -f -c %T /games 2>/dev/null || true)" = "btrfs" ]; then
+    		${pkgs.e2fsprogs}/bin/chattr +C /games || true
+  		fi
+	'';
 }
+
 
 
 
