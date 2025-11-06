@@ -4,6 +4,7 @@
 
 	imports = [
 		./regreet.nix
+		./snapper.nix
 	];
 
 	# Timezone & Locale
@@ -62,6 +63,7 @@
   		fi
 	'';
 }
+
 
 
 
