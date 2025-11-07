@@ -44,7 +44,7 @@
 								shell = pkgs.fish;
 							};
 						})
-					] ++ modules # Host-specific extras
+					] ++ modules; # Host-specific extras
 				};
 
 			# Define hosts (only host-specific modules here)
