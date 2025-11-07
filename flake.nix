@@ -40,7 +40,7 @@
 							home-manager.users.kanashi = {
 								home.username = "kanash";
 								home.homeDirectory = config.users.users.kanashi.home;
-								import = [ ./home.nix ];
+								imports = [ ./home.nix ];
 							};
 
 							users.users.kanashi = lib.mkDefault {
