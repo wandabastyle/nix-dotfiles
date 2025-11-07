@@ -6,36 +6,25 @@
 }:
 
 let
-  dotfiles = "${config.home.homeDirectory}/nix-dotfiles/config";
+  # Pure catalog for enumeration (store path)
+  catalog = ./config;
+  # Editable working tree on disk (used by mkOutOfStoreSymlink at activation)
+  worktree = "${config.home.homeDirectory}/nix-dotfiles/config";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  entries = builtins.readDir dotfiles;
+  entries = builtins.readDir catalog;
   dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
 in
 {
   imports = [
-    ./modules/neovim.nix
-    ./modules/brave-webapps.nix
+    # ...
   ];
 
-	# home.username = "kanashi";
-	# home.homeDirectory = "/home/kanashi";
-
-  programs.git.enable = true;
-
-  programs.fish = {
-    enable = true;
-    functions.nrs = ''
-        		sudo nixos-rebuild switch --flake ~/nixos-dotfiles#(hostname -s)
-      		'';
-  };
-
-  home.stateVersion = "25.05";
-
+  # Generate xdg.configFile entries from directories under config/
   xdg.configFile = builtins.listToAttrs (
     map (name: {
       name = name;
       value = {
-        source = create_symlink "${dotfiles}/${name}";
+        source = create_symlink "${worktree}/${name}";
         # recursive = false; # single directory symlink
       };
     }) dirNames
@@ -61,3 +50,4 @@ in
       	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
     	'';
 }
+
