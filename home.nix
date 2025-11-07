@@ -17,8 +17,8 @@ in
     ./modules/brave-webapps.nix
   ];
 
-  home.username = "kanashi";
-  home.homeDirectory = "/home/kanashi";
+	# home.username = "kanashi";
+	# home.homeDirectory = "/home/kanashi";
 
   programs.git.enable = true;
 

@@ -25,7 +25,7 @@
 						home-manager.nixosModules.home-manager
 
 						# Defaults: hostname + HM user
-						({ lib, pkgs, ... }: {
+						({ config, lib, pkgs, ... }: {
 							nixpkgs.config.allowUnfree = true;
 
 							networking.hostName = name;
@@ -35,7 +35,12 @@
 								useGlobalPkgs = true;
 								useUserPackages = true;
 								backupFileExtension = "backup";
-								users.kanashi = import ./home.nix;
+							};
+
+							home-manager.users.kanashi = {
+								home.username = "kanash";
+								home.homeDirectory = config.users.users.kanashi.home;
+								import = [ ./home.nix ];
 							};
 
 							users.users.kanashi = lib.mkDefault {
