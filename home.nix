@@ -45,6 +45,8 @@ in
     qutebrowser
   ];
 
+  home.stateVersion = "25.05";
+
   # Ensure dotfiles ownership at activation time (Home Manager style)
   home.activation.dotfiles-ownership = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
