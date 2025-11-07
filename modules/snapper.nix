@@ -1,58 +1,55 @@
 { config, pkgs, lib, ... }:
 
 {
+  # Optional: snapper CLI
   environment.systemPackages = [ pkgs.snapper ];
 
+  # Ensure the mountpoint exists even before @snapshots is mounted
   systemd.tmpfiles.rules = [
     "d /.snapshots 0755 root root - -"
   ];
 
   services.snapper = {
+    # Still valid
     snapshotRootOnBoot = true;
 
+    # Define per-subvolume configs (new schema: UPPERCASE keys)
     configs = {
       root = {
-        subvolume = "/";
-        allowUsers = [ "kanashi" ];
+        SUBVOLUME = "/";
+        ALLOW_USERS = [ "kanashi" ];
 
-        timeline = {
-          enable = true;
-          limitHourly  = 10;
-          limitDaily   = 7;
-          limitWeekly  = 0;
-          limitMonthly = 12;
-          limitYearly  = 0;
-        };
+        TIMELINE_CREATE = true;
+        TIMELINE_LIMIT_HOURLY  = 10;
+        TIMELINE_LIMIT_DAILY   = 7;
+        TIMELINE_LIMIT_WEEKLY  = 0;
+        TIMELINE_LIMIT_MONTHLY = 12;
+        TIMELINE_LIMIT_YEARLY  = 0;
 
-        cleanup = {
-          timeline     = true;
-          number       = true;
-          emptyPrePost = true;
-        };
+        TIMELINE_CLEANUP       = true;
+        NUMBER_CLEANUP         = true;
+        EMPTY_PRE_POST_CLEANUP = true;
       };
 
       home = {
-        subvolume = "/home";
-        allowUsers = [ "kanashi" ];
+        SUBVOLUME = "/home";
+        ALLOW_USERS = [ "kanashi" ];
 
-        timeline = {
-          enable = true;
-          limitHourly  = 10;
-          limitDaily   = 7;
-          limitWeekly  = 0;
-          limitMonthly = 12;
-          limitYearly  = 0;
-        };
+        TIMELINE_CREATE = true;
+        TIMELINE_LIMIT_HOURLY  = 10;
+        TIMELINE_LIMIT_DAILY   = 7;
+        TIMELINE_LIMIT_WEEKLY  = 0;
+        TIMELINE_LIMIT_MONTHLY = 12;
+        TIMELINE_LIMIT_YEARLY  = 0;
 
-        cleanup = {
-          timeline     = true;
-          number       = true;
-          emptyPrePost = true;
-        };
+        TIMELINE_CLEANUP       = true;
+        NUMBER_CLEANUP         = true;
+        EMPTY_PRE_POST_CLEANUP = true;
       };
     };
   };
 
+  # Helpful: periodic btrfs scrub for integrity
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
