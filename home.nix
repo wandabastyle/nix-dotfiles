@@ -1,69 +1,63 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-	dotfiles = "${config.home.homeDirectory}/nix-dotfiles/config";
-    create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-	entries = builtins.readDir dotfiles;
-	dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
-in 
+  dotfiles = "${config.home.homeDirectory}/nix-dotfiles/config";
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+  entries = builtins.readDir dotfiles;
+  dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
+in
 {
-	imports = [
-		./modules/neovim.nix
-		./modules/brave-webapps.nix
-	];
+  imports = [
+    ./modules/neovim.nix
+    ./modules/brave-webapps.nix
+  ];
 
-	programs.git.enable = true;
+  home.username = "kanashi";
+  home.homeDirectory = "/home/kanashi";
 
-	programs.fish = {
-  		enable = true;
-  		functions.nrs = ''
-    		sudo nixos-rebuild switch --flake ~/nixos-dotfiles#(hostname -s)
-  		'';
-	};
+  programs.git.enable = true;
 
-	home.stateVersion = "25.05";
+  programs.fish = {
+    enable = true;
+    functions.nrs = ''
+        		sudo nixos-rebuild switch --flake ~/nixos-dotfiles#(hostname -s)
+      		'';
+  };
 
-	xdg.configFile = builtins.listToAttrs (map (name: {
-		name = name;
-		value = {
-			source = create_symlink "${dotfiles}/${name}";
-			# recursive = false; # single directory symlink
-		};
-		}) dirNames);
+  home.stateVersion = "25.05";
 
-	home.packages = with pkgs; [
-		bat
-		ghostty
-		mpv
-		nwg-bar
-		starship
-		zoxide
-		obsidian
-		pass
-		ftb-app
-		freetube
-		brave
-		qutebrowser
-	];
+  xdg.configFile = builtins.listToAttrs (
+    map (name: {
+      name = name;
+      value = {
+        source = create_symlink "${dotfiles}/${name}";
+        # recursive = false; # single directory symlink
+      };
+    }) dirNames
+  );
 
-	# Ensure dotfiles ownership at activation time (Home Manager style)
-	home.activation.dotfiles-ownership = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-  	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
-	'';
+  home.packages = with pkgs; [
+    bat
+    ghostty
+    mpv
+    nwg-bar
+    starship
+    zoxide
+    obsidian
+    pass
+    ftb-app
+    freetube
+    brave
+    qutebrowser
+  ];
+
+  # Ensure dotfiles ownership at activation time (Home Manager style)
+  home.activation.dotfiles-ownership = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+      	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
+    	'';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
