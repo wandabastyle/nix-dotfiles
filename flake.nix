@@ -38,7 +38,7 @@
 							};
 
 							home-manager.users.kanashi = {
-								home.username = "kanash";
+								home.username = "kanashi";
 								home.homeDirectory = config.users.users.kanashi.home;
 								imports = [ ./home.nix ];
 							};
