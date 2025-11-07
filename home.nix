@@ -12,8 +12,6 @@ in
 		./modules/brave-webapps.nix
 	];
 
-	home.username = "kanashi";
-	home.homeDirectory = "/home/kanashi";
 	programs.git.enable = true;
 
 	programs.fish = {
