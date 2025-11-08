@@ -20,7 +20,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ];
     initialPassword = "changeme";
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
 
   services.openssh.enable = true;
