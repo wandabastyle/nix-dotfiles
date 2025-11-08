@@ -45,6 +45,7 @@
 
 							users.users.kanashi = lib.mkDefault {
 								isNormalUser = true;
+								group = "users";
 								extraGroups = [ "wheel" ];
 								shell = pkgs.fish;
 							};
