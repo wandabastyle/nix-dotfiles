@@ -43,9 +43,8 @@
 								imports = [ ./home.nix ];
 							};
 
-							users.users.kanashi = lib.mkDefault {
+							users.users.kanashi = {
 								isNormalUser = true;
-								group = "users";
 								extraGroups = [ "wheel" ];
 								shell = pkgs.fish;
 							};
