@@ -26,9 +26,10 @@
 	};
 
 	services.openssh.enable = true;
+	 
+	programs.fish.enable = true;
 
 	environment.systemPackages = with pkgs; [
-		fish
 		dunst
 		vim
 		wget
