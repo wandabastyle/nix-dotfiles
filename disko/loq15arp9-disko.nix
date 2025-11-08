@@ -14,7 +14,10 @@
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
-              mountOptions = [ "fmask=0077" "dmask=0077" ];
+              mountOptions = [
+                "fmask=0077"
+                "dmask=0077"
+              ];
             };
           };
 
@@ -22,20 +25,28 @@
             size = "100%";
             content = {
               type = "btrfs";
-              extraArgs = [ "-L" "nixos" ];
+              extraArgs = [
+                "-L"
+                "nixos"
+              ];
               subvolumes = {
                 "@root".mountpoint = "/";
                 "@home".mountpoint = "/home";
-                "@nix".mountpoint  = "/nix";
-                "@log".mountpoint  = "/var/log";
+                "@nix".mountpoint = "/nix";
+                "@log".mountpoint = "/var/log";
                 "@snapshots".mountpoint = "/.snapshots";
                 # Optional to keep snapshots lean:
-                "@var".mountpoint  = "/var";
-                "@tmp".mountpoint  = "/var/tmp";
-                "@games".mountpoint     = "/games";
+                "@var".mountpoint = "/var";
+                "@tmp".mountpoint = "/var/tmp";
+                "@games".mountpoint = "/games";
               };
               # Common FS mount options applied to all subvols:
-              mountOptions = [ "compress=zstd" "noatime" "ssd" "space_cache=v2" ];
+              mountOptions = [
+                "compress=zstd"
+                "noatime"
+                "ssd"
+                "space_cache=v2"
+              ];
             };
           };
         };

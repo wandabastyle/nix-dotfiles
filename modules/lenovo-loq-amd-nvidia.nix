@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   # Newer kernel tends to work best on LOQ/RTX 40-series
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -9,9 +15,9 @@
   };
 
   hardware.nvidia = {
-  nvidiaSettings = true;        # keep if you want the GUI tool
-  powerManagement.enable = true;  # optional: add if you want NVIDIA PM hooks
-  open = true;       # optional: force open kernel module
+    nvidiaSettings = true; # keep if you want the GUI tool
+    powerManagement.enable = true; # optional: add if you want NVIDIA PM hooks
+    open = true; # optional: force open kernel module
   };
 
   # Simple, conflict-free laptop power control
@@ -36,7 +42,7 @@
     vulkan-tools
     glxinfo
     nvtopPackages.full
-    power-profiles-daemon   # provides `powerprofilesctl`
+    power-profiles-daemon # provides `powerprofilesctl`
   ];
 
   # GameMode: toggles power profile + niri refresh rate on game start/stop.
