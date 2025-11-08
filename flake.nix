@@ -77,7 +77,7 @@
         nixos-hardware.nixosModules.common-cpu-amd-pstate
         nixos-hardware.nixosModules.common-pc-laptop
         nixos-hardware.nixosModules.common-pc.ssd
-        ./disko/loq15arp9.nix
+        ./disko/loq15arp9-disko.nix
         ./machines/loq15arp9.nix
         ./configuration.nix
       ];

@@ -35,6 +35,7 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
+		niri
     lazygit
   ];
 

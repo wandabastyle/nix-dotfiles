@@ -1,0 +1,3 @@
+[submodule "config/niri"]
+	path = config/niri
+	url = git@github.com:wandabastyle/niri.git
