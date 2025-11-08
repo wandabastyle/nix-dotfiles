@@ -11,7 +11,7 @@
   hardware.nvidia = {
   nvidiaSettings = true;        # keep if you want the GUI tool
   powerManagement.enable = true;  # optional: add if you want NVIDIA PM hooks
-  # open = lib.mkForce false;       # optional: force proprietary kernel module
+  open = true;       # optional: force open kernel module
   };
 
   # Simple, conflict-free laptop power control
