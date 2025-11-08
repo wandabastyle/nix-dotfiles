@@ -46,7 +46,7 @@
 							users.users.kanashi = {
 								isNormalUser = true;
 								extraGroups = [ "wheel" ];
-								defaultUserShell = pkgs.fish;
+								shell = pkgs.fish;
 							};
 						})
 					] ++ modules; # Host-specific extras

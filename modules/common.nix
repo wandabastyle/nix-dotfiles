@@ -28,6 +28,7 @@
 	services.openssh.enable = true;
 
 	environment.systemPackages = with pkgs; [
+		fish
 		dunst
 		vim
 		wget
