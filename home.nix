@@ -16,10 +16,9 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 
   # If catalog is missing, avoid crashing during evaluation
-  entries = if builtins.pathExists catalog then builtins.readDir catalog else {};
+  entries = if builtins.pathExists catalog then builtins.readDir catalog else { };
 
-  dirNames = builtins.filter (name: entries.${name} == "directory")
-                     (builtins.attrNames entries);
+  dirNames = builtins.filter (name: entries.${name} == "directory") (builtins.attrNames entries);
 in
 {
   # Pin to the first Home Manager release you used (don’t auto-bump)
@@ -32,6 +31,13 @@ in
     source = create_symlink "${worktree}/${name}";
     recursive = true;
   });
+
+  programs.fish = {
+    enable = true;
+    functions.nrs = ''
+        		sudo nixos-rebuild switch --flake ~/nixos-dotfiles#(hostname -s)
+      		'';
+  };
 
   home.packages = with pkgs; [
     bat
@@ -53,4 +59,3 @@ in
       	chown -R kanashi:users /home/kanashi/nix-dotfiles || true
     	'';
 }
-
