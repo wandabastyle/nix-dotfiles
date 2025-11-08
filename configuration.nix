@@ -23,6 +23,8 @@
     shell = pkgs.fish;
   };
 
+	programs.fish.enable = true;
+
   services.openssh.enable = true;
 
   # Bootloader (EFI)
