@@ -52,7 +52,7 @@
   security.sudo.wheelNeedsPassword = true;
 
   # greetd -> tuigreet -> Hyprland (Tokyo Night Moon-ish)
-  services.greetd.enable = false;
+  services.greetd.enable = true;
   services.greetd.settings.default_session = {
     user = "greeter";
     command = ''
@@ -62,13 +62,13 @@
   };
 
   services.displayManager.ly = {
-    enable = true;
+    enable = false;
     settings = {
       save = true; # remember last user + desktop
     };
   };
 
   system.activationScripts.dotfiles-ownership = ''
-    chown -R kanashi:users /home/kanashi/dotfiles || true
+    chown -R kanashi:users /home/kanashi/nix-dotfiles || true
   '';
 }
