@@ -14,55 +14,55 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@root" ];
     };
 
   fileSystems."/.snapshots" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@snapshots" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/6E7A-24C1";
+    { device = "/dev/disk/by-uuid/626E-47F4";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   fileSystems."/games" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@games" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@nix" ];
     };
 
   fileSystems."/var" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@var" ];
     };
 
   fileSystems."/var/log" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@log" ];
     };
 
   fileSystems."/var/tmp" =
-    { device = "/dev/disk/by-uuid/b50a02f6-645f-4e73-861d-ffeb3e28fb43";
+    { device = "/dev/disk/by-uuid/334f91d5-a14a-41ce-bcc6-52a5458ec526";
       fsType = "btrfs";
       options = [ "subvol=@tmp" ];
     };
