@@ -76,7 +76,7 @@
       nixosConfigurations.loq15arp9 = mkHost "loq15arp9" [
         nixos-hardware.nixosModules.common-cpu-amd-pstate
         nixos-hardware.nixosModules.common-pc-laptop
-        nixos-hardware.nixosModules.common-pc.ssd
+        nixos-hardware.nixosModules.common-pc-ssd
         ./disko/loq15arp9-disko.nix
         ./machines/loq15arp9.nix
         ./configuration.nix
