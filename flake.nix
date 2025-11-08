@@ -81,7 +81,7 @@
 					modules = [
 						# host-specific nixos-hardware-modules first...
 						nixos-hardware.nixosModules.common-cpu-amd-pstate
-						nixos-hardware.nixosModules.common-gpu-nvidia
+						# nixos-hardware.nixosModules.common-gpu-nvidia
 						nixos-hardware.nixosModules.common-pc-ssd
 						nixos-hardware.nixosModules.common-pc-laptop
 
